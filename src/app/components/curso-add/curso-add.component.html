@@ -1,0 +1,75 @@
+<div>
+  <!-- Nombre del curso -->
+  <div class="submit-form">
+    <div *ngIf="!submitted">
+      <div class="form-group">
+        <label for="title">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          required
+          [(ngModel)]="curso.nombre"
+          name="title"
+        />
+      </div>
+
+      <!-- Selector de temas -->
+      <div class="form-group">
+        <label for="tema">Tema</label>
+        <select class="form-control" [(ngModel)]="selectedTemaId" name="tema" (change)="updateMaterialesFiltrados()" >
+          <option value="0">Seleccione un tema</option>
+          <option *ngFor="let tema of temas" [value]="tema.id">{{ tema.nombre }}</option>
+        </select>
+      </div>
+      <div *ngIf="selectedTemaId > 0">
+          <label for="material">Materiales relacionados:</label>
+		<ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let material of nombreMaterialesFiltrados; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveElement(curso, i)"
+      >
+        {{ material }}
+       <!-- <div *ngIf="curso.tema">
+          ({{ curso.tema.nombre }})
+        </div> -->
+      </li>
+    </ul>
+     </div>
+
+      <!-- Fecha de inicio -->
+    
+      <div class="form-group">
+        <label for="startDate">Fecha de inicio</label>
+        <div>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" id="startDate" name="startDate" formControlName="startDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-hint>Elija una fecha (MM/DD/YYYY)</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Selector de Profesor -->
+      <div class="form-group">
+        <label for="tema">Profesor</label>
+        <select class="form-control">
+          <option value="0">Seleccione un profesor</option>
+          <option value="1">Francisco Lopez</option>
+          <option value="2">Martin Hernandez</option>
+          <option value="3">Pedro Gallardo</option>
+        </select>
+      </div>
+      <button (click)="saveCurso()" class="btn btn-success">Submit</button>
+    </div>
+
+    <div *ngIf="submitted">
+      <h4>Curso was submitted successfully!</h4>
+      <button class="btn btn-success" (click)="newCurso()">Add</button>
+    </div>
+  </div>
+</div>
+
