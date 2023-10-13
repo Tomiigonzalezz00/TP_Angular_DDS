@@ -1,3 +1,6 @@
 
 .angular/cache/14.2.2/angular-webpack/c92b6f050d185205d34c81b60b76109691557a04/0.pack
 .angular/cache/14.2.2/angular-webpack/c92b6f050d185205d34c81b60b76109691557a04/index.pack
+*.old
+*.pack
+*.pack

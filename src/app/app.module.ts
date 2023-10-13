@@ -24,6 +24,7 @@ import {NgIf} from '@angular/common';
 import {MatSelectModule} from '@angular/material/select';
 import { TemasComponent } from './components/temas/temas.component';
 import { AlumnosComponent } from './components/alumnos/alumnos.component';
+import { TemaComponent } from './models/tema/tema.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { AlumnosComponent } from './components/alumnos/alumnos.component';
     CursoDetailsComponent,
     TemasComponent,
     AlumnosComponent,
+    TemaComponent,
   ],
   imports: [
     BrowserModule,
