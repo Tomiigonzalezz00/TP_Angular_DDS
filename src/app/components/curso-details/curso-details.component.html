@@ -24,45 +24,53 @@
     <p>Please click on a Post...</p>
   </div>
 </div>
+
+
 <ng-template #editable>
   <div *ngIf="currentElement.id" class="edit-form">
     <h4>Instituto educativo - Curso</h4>
     <form>
-      <div class="form-group">
-        <label for="title">Nombre del curso</label>
+      <label for="title">Nombre</label>
         <input
           type="text"
           class="form-control"
           id="title"
-          [(ngModel)]="currentElement.nombre"
+          required
+          placeholder="Ingrese un nombre"
           name="title"
+          [(ngModel)]="currentElement.nombre" 
+          #nombreInput="ngModel"
         />
-      </div>
+        <div *ngIf="nombreInput.invalid && nombreInput.touched" class="text-danger">
+          El nombre es obligatorio.
+        </div>
       <div class="form-group">
-        <label for="description">Fecha inicio:</label>
-        <input
-          type="text"
-          class="form-control"
-          id="description"
-          [(ngModel)]="currentElement.fechaInicio"
-          name="description"
-        />
+        <label for="startDate">Fecha de inicio</label>
+        <div>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" id="startDate" name="startDate" [min]="minDate | date:'yyyy-MM-dd'" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-hint>Elija una fecha (MM/DD/AAAA)</mat-hint>
+          </mat-form-field>
+          <div *ngIf="cursoForm.controls['startDate']?.invalid && cursoForm.controls['startDate']?.touched" class="text-danger">
+            Seleccione una fecha válida.
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <label><strong>Docente id:</strong></label>
         {{ currentElement.idDocente == 0 ? "" : currentElement.idDocente }}
       </div>
     </form>
-    <button class="badge badge-danger mr-2" (click)="deleteElement()">
-      Delete
-    </button>
     <button
-      type="submit"
-      class="badge badge-success mb-2"
-      (click)="updateElement()"
-    >
-      Update
-    </button>
+	  type="submit"
+	  class="badge badge-success mb-2"
+	  (click)="updateElement()" 
+	  [disabled]="!isUpdateButtonEnabled()"
+	>
+	  Actualizar
+	</button>
     <p>{{ message }}</p>
   </div>
   <div *ngIf="!currentElement.id">

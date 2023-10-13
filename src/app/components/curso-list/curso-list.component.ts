@@ -70,10 +70,12 @@ searchTitle(): void {
   this.currentIndex = -1;
 
   if (this.cursos) {
+    this.title = this.myControl.value.toLowerCase(); // Obtén el valor del control de búsqueda en minúsculas
+
+    // Realizar la búsqueda solo si se ha ingresado un título
     if (this.title) {
-      // Realizar la búsqueda solo si se ha ingresado un título
       this.displayedCursos = this.cursos.filter((curso) =>
-        curso.nombre?.toLowerCase().includes(this.title.toLowerCase())
+        curso.nombre?.toLowerCase().includes(this.title)
       );
     } else {
       // Si no se ingresa un título, mostrar todos los cursos

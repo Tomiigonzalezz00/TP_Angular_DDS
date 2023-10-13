@@ -1,7 +1,7 @@
 <div>
   <!-- Nombre del curso -->
   <div class="submit-form">
-    <div *ngIf="!submitted">
+    <form (ngSubmit)="saveCurso()" #cursoForm="ngForm">
       <div class="form-group">
         <label for="title">Nombre</label>
         <input
@@ -9,68 +9,65 @@
           class="form-control"
           id="title"
           required
-          [(ngModel)]="curso.nombre"
+          placeholder="Ingrese un nombre"
           name="title"
+          [(ngModel)]="curso['nombre']" 
+          #nombreInput="ngModel"
         />
+        <div *ngIf="nombreInput.invalid && nombreInput.touched" class="text-danger">
+          El nombre es obligatorio.
+        </div>
       </div>
 
       <!-- Selector de temas -->
-      <div class="form-group">
-        <label for="tema">Tema</label>
-        <select class="form-control" [(ngModel)]="selectedTemaId" name="tema" (change)="updateMaterialesFiltrados()" >
-          <option value="0">Seleccione un tema</option>
-          <option *ngFor="let tema of temas" [value]="tema.id">{{ tema.nombre }}</option>
-        </select>
-      </div>
-      <div *ngIf="selectedTemaId > 0">
-          <label for="material">Materiales relacionados:</label>
-		<ul class="list-group">
-      <li
-        class="list-group-item"
-        *ngFor="let material of nombreMaterialesFiltrados; let i = index"
-        [class.active]="i == currentIndex"
-        (click)="setActiveElement(curso, i)"
-      >
-        {{ material }}
-       <!-- <div *ngIf="curso.tema">
-          ({{ curso.tema.nombre }})
-        </div> -->
-      </li>
-    </ul>
-     </div>
+	      <div class="form-group">
+	  <label for="tema">Tema</label>
+	  <select class="form-control" required [(ngModel)]="selectedTemaId" name="tema" (change)="updateMaterialesFiltrados()">
+	    <option value="0" disabled>Seleccione un tema</option>
+	    <option *ngFor="let tema of temas" [value]="tema.id">{{ tema.nombre }}</option>
+	  </select>
+	  <div *ngIf="cursoForm.controls['tema'].invalid && cursoForm.controls['tema'].touched" class="text-danger">
+	    Seleccione un tema.
+	  </div>
+	</div>
 
       <!-- Fecha de inicio -->
-    
       <div class="form-group">
         <label for="startDate">Fecha de inicio</label>
         <div>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker" id="startDate" name="startDate" formControlName="startDate">
+            <input matInput [matDatepicker]="picker" id="startDate" name="startDate" [min]="minDate | date:'yyyy-MM-dd'" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-hint>Elija una fecha (MM/DD/YYYY)</mat-hint>
+            <mat-hint>Elija una fecha. Si se deja en blanco se seleccionará la fecha de hoy</mat-hint>
           </mat-form-field>
+          <div *ngIf="cursoForm.controls['startDate']?.invalid && cursoForm.controls['startDate']?.touched" class="text-danger">
+            Seleccione una fecha válida.
+          </div>
         </div>
       </div>
 
       <!-- Selector de Profesor -->
-      <div class="form-group">
-        <label for="tema">Profesor</label>
-        <select class="form-control">
-          <option value="0">Seleccione un profesor</option>
-          <option value="1">Francisco Lopez</option>
-          <option value="2">Martin Hernandez</option>
-          <option value="3">Pedro Gallardo</option>
-        </select>
-      </div>
-      <button (click)="saveCurso()" class="btn btn-success">Submit</button>
-    </div>
-
-    <div *ngIf="submitted">
-      <h4>Curso was submitted successfully!</h4>
-      <button class="btn btn-success" (click)="newCurso()">Add</button>
-    </div>
+     <div class="form-group">
+  <label for="profesor">Profesor</label>
+  <select class="form-control" required name="profesor" [(ngModel)]="selectedProfesor">
+    <option value="0" disabled>Seleccione un profesor</option>
+    <option value="1">Francisco Lopez</option>
+    <option value="2">Martin Hernandez</option>
+    <option value="3">Pedro Gallardo</option>
+  </select>
+  <div *ngIf="cursoForm.controls['profesor'].invalid && cursoForm.controls['profesor'].touched" class="text-danger">
+    Seleccione un profesor.
   </div>
 </div>
 
-<!-- Commit de prueba desde la netbook-->
+    <!-- boton para crear el curso-->
+      <button type="submit" class="btn btn-success" [disabled]="cursoForm.invalid || selectedTemaId === 0 || selectedProfesor === 0 ">Crear Curso
+	  </button>
+    </form>
+  </div>
+
+  <div *ngIf="submitted">
+    <h4>El curso se creo correctamente!</h4>
+  </div>
+</div>

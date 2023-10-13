@@ -1,35 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Curso } from 'src/app/models/curso.model';
 import { CursoService } from 'src/app/services/curso.service';
 import { Tema } from 'src/app/models/tema.model';
 import { TemaService } from 'src/app/services/tema.service';
 import { Material } from 'src/app/models/material.model';
 import { MaterialService } from 'src/app/services/material.service';
-import { Observable } from 'rxjs';
-
-import {
-  FormControl,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { MatInputModule } from '@angular/material/input';
-import { NgIf } from '@angular/common';
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(
-    control: FormControl | null,
-    form: FormGroupDirective | NgForm | null
-  ): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-curso-add',
@@ -37,7 +13,14 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./curso-add.component.css'],
 })
 export class CursoAddComponent implements OnInit {
-  curso: Curso = {
+  cursoForm: FormGroup;
+  temas?: Tema[];
+  nombreMaterialesFiltrados: String[] = [];
+  selectedTemaId: number = 0;
+  selectedProfesor: number = 0;
+  minDate = new Date();
+  mensajeAdvertencia: string = '';
+ curso: Curso = {
     nombre: '',
     fechaInicio: new Date(),
     idDocente: 1,
@@ -47,63 +30,23 @@ export class CursoAddComponent implements OnInit {
   };
   submitted = false;
 
-  selectedMaterialId: number = 0;
-  dateError: boolean = false;
-  temasCursos: any[] = [];
-  materiales?: Material[];
-  temas?: Tema[];
-  
-  cursos?: Curso[];
-  options: Curso[] = [];
-  displayedCursos: Curso[] = [];
-  filteredOptions: Observable<Curso[]> = new Observable<Curso[]>();
-  currentElement: Curso = {};
-  currentIndex = -1;
-  
-
   constructor(
+    private formBuilder: FormBuilder,
     private cursoService: CursoService,
     private materialService: MaterialService,
     private temaService: TemaService
-  ) {}
-
-  materialesTema: Material[] = [];
-  materialesFiltrados?: Material[] = [];
-  nombreMaterialesFiltrados : String[] = [];
-  selectedTemaId: number = 0;
-
-  selectFormControl = new FormControl('valid', [
-    Validators.required,
-    Validators.pattern('valid'),
-  ]);
-
-  nativeSelectFormControl = new FormControl('valid', [
-    Validators.required,
-    Validators.pattern('valid'),
-  ]);
-
-  matcher = new MyErrorStateMatcher();
+  ) {
+    this.cursoForm = this.formBuilder.group({
+      nombre: ['', Validators.required],
+      tema: [null, Validators.required],
+      fechaInicio: [new Date(), Validators.required],
+      idDocente: [1, Validators.required],
+    });
+  }
 
   ngOnInit(): void {
-	  this.retrieveCursos();
-    this.retrieveMateriales();
     this.retrieveTema();
-  }
-
-	 setActiveElement(element: Curso, index: number): void {
-    this.currentElement = element;
-    this.currentIndex = index;
-  }
-	
-	retrieveCursos(): void {
-    this.cursoService.getAll().subscribe({
-      next: (data) => {
-        this.cursos = data;
-        this.options = this.cursos;
-        this.displayedCursos = this.cursos; // Inicialmente, mostrar todos los cursos
-      },
-      error: (e) => console.error(e),
-    });
+    this.minDate.setDate(this.minDate.getDate() + 1);
   }
 
   saveCurso(): void {
@@ -137,45 +80,28 @@ export class CursoAddComponent implements OnInit {
     };
   }
 
-  retrieveMateriales(): void {
-    this.materialService.getAll().subscribe({
-      next: (data: Material[]) => {
-        this.materiales = data;
-        console.log(this.materiales);
-      },
-      error: (e: any) => console.error(e),
-    });
-  }
-
   retrieveTema(): void {
     this.temaService.getAll().subscribe({
       next: (data: Tema[]) => {
         this.temas = data;
-        console.log(this.temas);
       },
       error: (e: any) => console.error(e),
     });
   }
-  
-updateMaterialesFiltrados(): void {
-  if (this.selectedTemaId > 0) {
-    // Debes cargar la lista de materiales relacionados al tema seleccionado aquí utilizando this.materialService
-    this.materialService.obtenerMaterialesPorIdTema(this.selectedTemaId).subscribe((data: any) => {
-      if (Array.isArray(data)) {
-        this.nombreMaterialesFiltrados = data.map(material => material.titulo || 'Título no disponible');
-        console.log(this.selectedTemaId);
+
+  updateMaterialesFiltrados(): void {
+    if (this.selectedTemaId > 0) {
+      this.materialService.obtenerMaterialesPorIdTema(this.selectedTemaId).subscribe((data: any) => {
+        if (Array.isArray(data)) {
+          this.nombreMaterialesFiltrados = data.map((material) => material.titulo || 'Título no disponible');
+        } else {
+          console.error('Los datos no son un array válido.');
+        }
         console.log(this.nombreMaterialesFiltrados);
-      } else {
-        // Si data no es un array, maneja este caso según tu lógica 
-        console.error('Los datos no son un array válido.');
-      }
-    });
-  } else {
-    this.nombreMaterialesFiltrados = []; // Limpiar la lista si no se selecciona un tema
-    console.log(this.nombreMaterialesFiltrados);
+      });
+    } else {
+      this.nombreMaterialesFiltrados = [];
+      console.log(this.nombreMaterialesFiltrados);
+    }
   }
 }
-}
-
-
-

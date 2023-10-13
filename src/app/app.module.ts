@@ -22,6 +22,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import {NgIf} from '@angular/common';
 import {MatSelectModule} from '@angular/material/select';
+import { TemasComponent } from './components/temas/temas.component';
+import { AlumnosComponent } from './components/alumnos/alumnos.component';
 
 
 @NgModule({
@@ -30,6 +32,8 @@ import {MatSelectModule} from '@angular/material/select';
     CursoAddComponent,
     CursoListComponent,
     CursoDetailsComponent,
+    TemasComponent,
+    AlumnosComponent,
   ],
   imports: [
     BrowserModule,
