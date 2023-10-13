@@ -22,8 +22,10 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 import {NgIf} from '@angular/common';
 import {MatSelectModule} from '@angular/material/select';
-import { TemasComponent } from './components/temas/temas.component';
-import { AlumnosComponent } from './components/alumnos/alumnos.component';
+import { TemaAddComponent } from './components/tema-add/tema-add.component';
+import { TemaListComponent } from './components/tema-list/tema-list.component';
+import { AlumnoListComponent } from './components/alumno-list/alumno-list.component';
+import { AlumnoAddComponent } from './components/alumno-add/alumno-add.component';
 
 
 
@@ -33,8 +35,10 @@ import { AlumnosComponent } from './components/alumnos/alumnos.component';
     CursoAddComponent,
     CursoListComponent,
     CursoDetailsComponent,
-    TemasComponent,
-    AlumnosComponent
+    TemaAddComponent,
+    TemaListComponent,
+    AlumnoListComponent,
+    AlumnoAddComponent,
   ],
   imports: [
     BrowserModule,

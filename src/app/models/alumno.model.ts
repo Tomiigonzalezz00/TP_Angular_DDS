@@ -1,5 +1,5 @@
-export class Tema {
+export class Alumno {
 	id?: number;
 	nombre?: string;
-	duracion?: number;
+	fechaNacimiento?: Date;
 }
