@@ -1,1 +1,40 @@
-<p>tema-list works!</p>
+
+  <h1>Listado de Temas</h1>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input
+              type="text"
+              placeholder="Buscar tema"
+              matInput
+              [formControl]="myControl"
+              (input)="searchTitle()"
+            />
+          </mat-form-field>
+          <div class="input-group-append">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tema of displayedTemas; let i = index">
+            <td>
+              {{ tema.nombre }}
+            </td>
+            <td *ngIf="tema.id">{{ tema.id }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="displayedTemas.length === 0">No hay temas con ese nombre.</div>
+    </div>
+

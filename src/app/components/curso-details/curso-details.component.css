@@ -1,0 +1,190 @@
+/* Estilos para el contenedor principal */
+.post-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Estilos para la vista de solo lectura */
+.post {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  width: 400px;
+}
+
+.post h4 {
+  font-size: 18px;
+  margin: 0 0 15px;
+  color: #333;
+}
+
+.post-detail {
+  margin-bottom: 10px;
+}
+
+.edit-link {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  text-decoration: none;
+  background-color: #ffc107;
+  color: #333;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.edit-link:hover {
+  background-color: #f8b400;
+}
+
+/* Estilos para la vista de edición */
+.edit-form {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  width: 400px;
+}
+
+.edit-button {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  text-decoration: none;
+  background-color: #28a745;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+  background-color: darkgray; 
+}
+
+.message {
+  margin-top: 10px;
+  color: #dc3545;
+}
+
+
+.no-post {
+  text-align: center;
+  font-size: 18px;
+  color: #333;
+  margin-top: 30px;
+}
+
+.edit-button {
+  background-color: gray;
+  color: white;
+  padding: 10px 0;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 3px;
+  display: block;
+  width: 100%;
+  transition: background-color 0.3s; /* Transición al cambiar el fondo */
+}
+
+.element-container {
+  text-align: center;
+}
+
+.edit-form {
+  text-align: center;
+  background-color: #f5f5f5; /* Fondo gris claro */
+  padding: 20px;
+  border-radius: 5px;
+  border: 1px solid #d1d1d1; /* Borde gris */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+form {
+  text-align: left;
+}
+
+form .form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.error-message {
+  color: #ff0000; /* Rojo para mensajes de error */
+}
+
+.update-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #808080; /* Gris */
+  color: #fff; /* Texto blanco */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.cancel-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #ff0000; /* Gris */
+  color: #fff; /* Texto blanco */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.update-button:hover {
+  background-color: #404040; /* Gris más oscuro al pasar el mouse */
+}
+
+.cancel-button:hover {
+  background-color: rgb(128, 0, 0); /* Gris más oscuro al pasar el mouse */
+}
+
+.message {
+  margin-top: 10px;
+  color: #008000; /* Verde para mensajes de éxito */
+}
+
+.not-found {
+  color: #ff0000; /* Rojo para "Elemento no encontrado" */
+}
+
+.update-success-message {
+  background-color: #4CAF50; /* Color de fondo verde */
+  color: white; /* Texto blanco */
+  text-align: center;
+  padding: 10px;
+  margin-top: 10px;
+}

@@ -1,0 +1,11 @@
+/* Estilos para centrar horizontalmente los elementos de la barra de navegación */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilos para mantener "Test DDS" en su posición original */
+.navbar-brand {
+  margin-right: 0;
+}

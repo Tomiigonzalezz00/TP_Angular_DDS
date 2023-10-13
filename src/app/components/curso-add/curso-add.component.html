@@ -1,4 +1,5 @@
-<div>
+<div class="post-container">
+  <h1>Ingrese los datos del nuevo curso</h1>
   <!-- Nombre del curso -->
   <div class="submit-form">
     <form (ngSubmit)="saveCurso()" #cursoForm="ngForm">
@@ -20,16 +21,16 @@
       </div>
 
       <!-- Selector de temas -->
-	      <div class="form-group">
-	  <label for="tema">Tema</label>
-	  <select class="form-control" required [(ngModel)]="selectedTemaId" name="tema" (change)="updateMaterialesFiltrados()">
-	    <option value="0" disabled>Seleccione un tema</option>
-	    <option *ngFor="let tema of temas" [value]="tema.id">{{ tema.nombre }}</option>
-	  </select>
-	  <div *ngIf="cursoForm.controls['tema'].invalid && cursoForm.controls['tema'].touched" class="text-danger">
-	    Seleccione un tema.
-	  </div>
-	</div>
+      <div class="form-group">
+        <label for="tema">Tema</label>
+        <select class="form-control" required [(ngModel)]="selectedTemaId" name="tema" (change)="updateMaterialesFiltrados()">
+          <option value="0" disabled>Seleccione un tema</option>
+          <option *ngFor="let tema of temas" [value]="tema.id">{{ tema.nombre }}</option>
+        </select>
+        <div *ngIf="cursoForm.controls['tema'].invalid && cursoForm.controls['tema'].touched" class="text-danger">
+          Seleccione un tema.
+        </div>
+      </div>
 
       <!-- Fecha de inicio -->
       <div class="form-group">
@@ -48,26 +49,30 @@
       </div>
 
       <!-- Selector de Profesor -->
-     <div class="form-group">
-  <label for="profesor">Profesor</label>
-  <select class="form-control" required name="profesor" [(ngModel)]="selectedProfesor">
-    <option value="0" disabled>Seleccione un profesor</option>
-    <option value="1">Francisco Lopez</option>
-    <option value="2">Martin Hernandez</option>
-    <option value="3">Pedro Gallardo</option>
-  </select>
-  <div *ngIf="cursoForm.controls['profesor'].invalid && cursoForm.controls['profesor'].touched" class="text-danger">
-    Seleccione un profesor.
-  </div>
-</div>
+      <div class="form-group">
+        <label for="profesor">Profesor</label>
+        <select class="form-control" required name="profesor" [(ngModel)]="selectedProfesor">
+          <option value="0" disabled>Seleccione un profesor</option>
+          <option value="1">Francisco Lopez</option>
+          <option value="2">Martin Hernandez</option>
+          <option value="3">Pedro Gallardo</option>
+        </select>
+        <div *ngIf="cursoForm.controls['profesor'].invalid && cursoForm.controls['profesor'].touched" class="text-danger">
+          Seleccione un profesor.
+        </div>
+      </div>
 
-    <!-- boton para crear el curso-->
-      <button type="submit" class="btn btn-success" [disabled]="cursoForm.invalid || selectedTemaId === 0 || selectedProfesor === 0 ">Crear Curso
-	  </button>
+      <!-- Botón para crear el curso -->
+      <button type="submit" class="btn gray-button" [disabled]="cursoForm.invalid || selectedTemaId === 0 || selectedProfesor === 0">
+  Añadir Curso
+</button>
+
     </form>
   </div>
 
   <div *ngIf="submitted">
-    <h4>El curso se creo correctamente!</h4>
+    <div class="alert alert-success">
+      El curso se creó correctamente. Puede verlo en la lista de cursos.
+    </div>
   </div>
 </div>

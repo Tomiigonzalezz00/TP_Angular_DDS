@@ -3,8 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CursoService } from 'src/app/services/curso.service';
 import { Curso } from 'src/app/models/curso.model';
-import { Tema } from 'src/app/models/tema.model';
-import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-curso-details',
@@ -28,6 +27,7 @@ export class CursoDetailsComponent implements OnInit {
   };
   cursoForm: FormGroup;
   minDate = new Date();
+  updateSuccessMessageVisible = false;
   
   message = '';
   constructor(
@@ -67,18 +67,36 @@ export class CursoDetailsComponent implements OnInit {
   return !!this.currentElement.nombre && !!this.currentElement.fechaInicio;
 }
 
-  updateElement(): void {
-    this.message = '';
-    this.cursoService.update(this.currentElement.id, this.currentElement)
-      .subscribe({
-        next: (res) => {
-          console.log(res);
-          this.message = res.message ? res.message : 'Curso actualizado!';
-          //this.router.navigate(['/cursos']);
-        },
-        error: (e) => console.error(e)
-      });
-  }
+ updateElement(): void {
+  this.message = '';
+  this.cursoService.update(this.currentElement.id, this.currentElement)
+    .subscribe({
+      next: (res) => {
+        console.log(res);
+        this.message = res.message ? res.message : 'Curso actualizado Correctamente, volviendo a la página de cursos...';
+        this.showSuccessMessage();
+        // Redirige a la lista de cursos después de un cierto tiempo
+        setTimeout(() => {
+          this.router.navigate(['/cursos']);
+        }, 3000); // 3000 milisegundos (3 segundos)
+      },
+      error: (e) => console.error(e)
+    });
+}
+
+showSuccessMessage(): void {
+  this.updateSuccessMessageVisible = true;
+
+  // Oculta el mensaje de éxito después de 3 segundos
+  setTimeout(() => {
+    this.updateSuccessMessageVisible = false;
+  }, 3000); // 3000 milisegundos (3 segundos)
+}
+
+cancelUpdate(): void {
+  this.router.navigate(['/cursos']); // Redirige a la lista de cursos
+}
+
   deleteElement(): void {
     this.cursoService.delete(this.currentElement.id)
       .subscribe({

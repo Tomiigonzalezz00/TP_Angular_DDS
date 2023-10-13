@@ -287,3 +287,7 @@
 .angular/cache/14.2.2/angular-webpack/c92b6f050d185205d34c81b60b76109691557a04/7.pack_
 .angular/cache/14.2.2/angular-webpack/c92b6f050d185205d34c81b60b76109691557a04/6.pack_
 .angular/cache/14.2.2/angular-webpack/c92b6f050d185205d34c81b60b76109691557a04/0.pack_
+*.pack_
+.angular/cache/14.2.2/babel-webpack/3698dfe47ee8aa4491980b033644734b.json
+.angular/cache/14.2.2/babel-webpack/0e5849a1db72fe1837cde6c71a4d3043.json
+.angular/cache/14.2.2/babel-webpack/067b834b75f1107421c546239b43d667.json

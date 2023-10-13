@@ -1,39 +1,24 @@
+
+<h1>Listado de Cursos</h1>
 <div class="list row">
   <div class="col-md-8">
     <div class="input-group mb-3">
       <form class="example-form">
         <mat-form-field class="example-full-width">
-          <!--  <mat-label> Cursos </mat-label> -->
           <input
             type="text"
             placeholder="Buscar curso"
             matInput
             [formControl]="myControl"
-            [matAutocomplete]="auto"
+            (input)="searchTitle()"
           />
-          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-            <mat-option
-              *ngFor="let option of filteredOptions | async"
-              [value]="option.nombre"
-            >
-              {{ option.nombre }}
-            </mat-option>
-          </mat-autocomplete>
         </mat-form-field>
       </form>
       <div class="input-group-append">
-        <button
-          class="btn btn-outline-secondary"
-          type="button"
-          (click)="searchTitle()"
-        >
-          Buscar
-        </button>
       </div>
     </div>
   </div>
   <div class="col-md-6">
-    <h4>Listado Cursos</h4>
     <ul class="list-group">
       <li
         class="list-group-item"
@@ -46,10 +31,10 @@
           ({{ curso.tema.nombre }})
         </div>
       </li>
+      <div *ngIf="displayedCursos.length === 0">No hay cursos con ese nombre.</div>
     </ul>
   </div>
   <div class="col-md-6">
     <app-curso-details [viewMode]="true" [currentElement]="currentElement"></app-curso-details>
   </div>
 </div>
-

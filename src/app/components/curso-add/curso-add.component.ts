@@ -4,8 +4,8 @@ import { Curso } from 'src/app/models/curso.model';
 import { CursoService } from 'src/app/services/curso.service';
 import { Tema } from 'src/app/models/tema.model';
 import { TemaService } from 'src/app/services/tema.service';
-import { Material } from 'src/app/models/material.model';
 import { MaterialService } from 'src/app/services/material.service';
+
 
 @Component({
   selector: 'app-curso-add',
@@ -46,7 +46,7 @@ export class CursoAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.retrieveTema();
-    this.minDate.setDate(this.minDate.getDate() + 1);
+    this.minDate.setDate(this.minDate.getDate() + 2);
   }
 
   saveCurso(): void {

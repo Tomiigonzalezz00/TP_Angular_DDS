@@ -1,36 +1,34 @@
-<div *ngIf="viewMode; else editable">
-  <div *ngIf="currentElement.id">
-    <h4>Instituto educativo - Curso</h4>
-    <div>
-      <label><strong>Nombre:</strong></label> {{ currentElement.nombre }}
+<div class="post-container">
+  <div *ngIf="viewMode; else editable" class="post">
+    <div *ngIf="currentElement.id">
+      <h4>Instituto educativo - Curso</h4>
+      <div class="post-detail">
+        <label><strong>Nombre:</strong></label> {{ currentElement.nombre }}
+      </div>
+      <div class="post-detail">
+        <label><strong>Fecha inicio:</strong></label>
+        {{ currentElement.fechaInicio | date:'dd/MM/yyyy' }}
+      </div>
+      <div class="post-detail">
+        <label><strong>Tema:</strong></label>
+        {{ currentElement.tema == null ? "-" : currentElement.tema.nombre }}
+      </div>
+      <a class="edit-button" routerLink="/cursos/{{ currentElement.id }}">Edit</a>
     </div>
-    <div>
-      <label><strong>Fecha inicio:</strong></label>
-      {{ currentElement.fechaInicio | date:'dd/MM/yyyy'}} 
-     </div>
-    <div>
-      <label><strong>Tema:</strong></label>
-      {{ currentElement.tema == null ? "-": currentElement.tema.nombre}}
-    </div>    
-    <a
-      class="badge badge-warning"
-      routerLink="/cursos/{{ currentElement.id }}"
-    >
-      Edit
-    </a>
-  </div>
-  <div *ngIf="!currentElement">
-    <br />
-    <p>Please click on a Post...</p>
+    <div *ngIf="!currentElement" class="no-post">
+      <br />
+      <p>Please click on a Post...</p>
+    </div>
   </div>
 </div>
 
 
 <ng-template #editable>
   <div *ngIf="currentElement.id" class="edit-form">
-    <h4>Instituto educativo - Curso</h4>
+    <h4 class="title">Instituto educativo - Curso</h4>
     <form>
-      <label for="title">Nombre</label>
+      <div class="form-group">
+        <label for="title">Nombre</label>
         <input
           type="text"
           class="form-control"
@@ -41,9 +39,10 @@
           [(ngModel)]="currentElement.nombre" 
           #nombreInput="ngModel"
         />
-        <div *ngIf="nombreInput.invalid && nombreInput.touched" class="text-danger">
+        <div *ngIf="nombreInput.invalid && nombreInput.touched" class="error-message">
           El nombre es obligatorio.
         </div>
+      </div>
       <div class="form-group">
         <label for="startDate">Fecha de inicio</label>
         <div>
@@ -53,29 +52,39 @@
             <mat-datepicker #picker></mat-datepicker>
             <mat-hint>Elija una fecha (MM/DD/AAAA)</mat-hint>
           </mat-form-field>
-          <div *ngIf="cursoForm.controls['startDate']?.invalid && cursoForm.controls['startDate']?.touched" class="text-danger">
+          <div *ngIf="cursoForm.controls['startDate']?.invalid && cursoForm.controls['startDate']?.touched" class="error-message">
             Seleccione una fecha válida.
           </div>
         </div>
       </div>
+      <button
+        type="submit"
+        class="update-button"
+        (click)="updateElement()" 
+        [disabled]="!isUpdateButtonEnabled()"
+      >
+        Actualizar
+      </button>
+      <button
+        type="cancel"
+        class="cancel-button"
+        (click)="cancelUpdate()" 
+      >
+        Cancelar
+      </button>
+      <p class="message">{{ message }}</p>
+       <!--
       <div class="form-group">
         <label><strong>Docente id:</strong></label>
         {{ currentElement.idDocente == 0 ? "" : currentElement.idDocente }}
-      </div>
+      </div> 
+      --> <!--No hace falta mostrar el ID del docente-->
     </form>
-    <button
-	  type="submit"
-	  class="badge badge-success mb-2"
-	  (click)="updateElement()" 
-	  [disabled]="!isUpdateButtonEnabled()"
-	>
-	  Actualizar
-	</button>
-    <p>{{ message }}</p>
   </div>
   <div *ngIf="!currentElement.id">
     <br />
-    <p>Elemento no encontrado...</p>
+    <p class="not-found">Elemento no encontrado...</p>
   </div>
 </ng-template>
+
 

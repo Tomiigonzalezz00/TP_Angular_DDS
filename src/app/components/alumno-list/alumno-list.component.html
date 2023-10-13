@@ -1,1 +1,42 @@
-<p>alumno-list works!</p>
+
+  <h1>Listado de Alumnos</h1>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input
+              type="text"
+              placeholder="Buscar alumno"
+              matInput
+              [formControl]="myControl"
+            />
+          </mat-form-field>
+          <div class="input-group-append">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Legajo</th>
+            <th>Fecha de nacimiento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let alumno of displayedAlumnos; let i = index">
+            <td>
+              {{ alumno.nombre }}
+            </td>
+            <td *ngIf="alumno.id">{{ alumno.id }}</td>
+            <td *ngIf="alumno.fechaNacimiento">{{ alumno.fechaNacimiento }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="displayedAlumnos.length === 0">No hay cursos con ese nombre.</div>
+    </div>
+  </div>
+
