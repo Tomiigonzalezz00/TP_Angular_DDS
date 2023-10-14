@@ -78,7 +78,7 @@ export class CursoDetailsComponent implements OnInit {
         // Redirige a la lista de cursos después de un cierto tiempo
         setTimeout(() => {
           this.router.navigate(['/cursos']);
-        }, 3000); // 3000 milisegundos (3 segundos)
+        }, 2000); // 3000 milisegundos (3 segundos)
       },
       error: (e) => console.error(e)
     });

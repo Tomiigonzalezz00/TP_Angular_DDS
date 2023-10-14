@@ -1,0 +1,41 @@
+<div class="post-container">
+<h1>Listado de Materiales</h1>
+<div class="row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input
+            type="text"
+            placeholder="Buscar material"
+            matInput
+            [formControl]="myControl"
+          />
+        </mat-form-field>
+        <div class="input-group-append"></div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <table class="table material-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Titulo</th>
+          <th>Stock</th>
+          <th>Costo Unitario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let material of displayedMateriales; let i = index">
+          <td>{{ material.id }}</td>
+          <td *ngIf="material.titulo">{{ material.titulo }}</td>
+          <td *ngIf="material.stock">{{ material.stock }}</td>
+          <td *ngIf="material.costo">${{ material.costo }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="displayedMateriales.length === 0">No hay materiales con ese nombre.</div>
+  </div>
+</div>
+</div>

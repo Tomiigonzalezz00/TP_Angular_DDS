@@ -24,6 +24,7 @@ import {NgIf} from '@angular/common';
 import {MatSelectModule} from '@angular/material/select';
 import { TemaListComponent } from './components/tema-list/tema-list.component';
 import { AlumnoListComponent } from './components/alumno-list/alumno-list.component';
+import { MaterialListComponent } from './components/material-list/material-list.component';
 
 
 
@@ -37,6 +38,7 @@ import { AlumnoListComponent } from './components/alumno-list/alumno-list.compon
     CursoDetailsComponent,
     TemaListComponent,
     AlumnoListComponent,
+    MaterialListComponent,
 
   ],
   imports: [

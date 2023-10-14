@@ -40,7 +40,7 @@
             <input matInput [matDatepicker]="picker" id="startDate" name="startDate" [min]="minDate | date:'yyyy-MM-dd'" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-hint>Elija una fecha. Si se deja en blanco se seleccionará la fecha de hoy</mat-hint>
+            <mat-hint>Elija una fecha, en caso contrario se utiliza la fecha actual.</mat-hint>
           </mat-form-field>
           <div *ngIf="cursoForm.controls['startDate']?.invalid && cursoForm.controls['startDate']?.touched" class="text-danger">
             Seleccione una fecha válida.

@@ -1,19 +1,21 @@
-
+<div class="post-container">
 <h1>Listado de Cursos</h1>
 <div class="list row">
   <div class="col-md-8">
     <div class="input-group mb-3">
-      <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <input
-            type="text"
-            placeholder="Buscar curso"
-            matInput
-            [formControl]="myControl"
-            (input)="searchTitle()"
-          />
-        </mat-form-field>
-      </form>
+     <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <input
+              type="text"
+              placeholder="Buscar Curso"
+              matInput
+              [formControl]="myControl"
+              (input)="searchTitle()"
+            />
+          </mat-form-field>
+          <div class="input-group-append">
+          </div>
+        </form>
       <div class="input-group-append">
       </div>
     </div>
@@ -37,4 +39,5 @@
   <div class="col-md-6">
     <app-curso-details [viewMode]="true" [currentElement]="currentElement"></app-curso-details>
   </div>
+</div>
 </div>

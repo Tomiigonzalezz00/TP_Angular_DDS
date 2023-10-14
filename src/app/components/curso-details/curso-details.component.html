@@ -13,7 +13,7 @@
         <label><strong>Tema:</strong></label>
         {{ currentElement.tema == null ? "-" : currentElement.tema.nombre }}
       </div>
-      <a class="edit-button" routerLink="/cursos/{{ currentElement.id }}">Edit</a>
+      <a class="edit-button" routerLink="/cursos/{{ currentElement.id }}">Editar</a>
     </div>
     <div *ngIf="!currentElement" class="no-post">
       <br />
@@ -25,10 +25,10 @@
 
 <ng-template #editable>
   <div *ngIf="currentElement.id" class="edit-form">
-    <h4 class="title">Instituto educativo - Curso</h4>
+    <h4 class="title">Instituto educativo - Editar Curso</h4>
     <form>
       <div class="form-group">
-        <label for="title">Nombre</label>
+        <label for="title">Nuevo Nombre</label>
         <input
           type="text"
           class="form-control"
@@ -50,7 +50,7 @@
             <input matInput [matDatepicker]="picker" id="startDate" name="startDate" [min]="minDate | date:'yyyy-MM-dd'" required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
-            <mat-hint>Elija una fecha (MM/DD/AAAA)</mat-hint>
+            <mat-hint>Elija una fecha, en caso contrario se utiliza la fecha actual.</mat-hint>
           </mat-form-field>
           <div *ngIf="cursoForm.controls['startDate']?.invalid && cursoForm.controls['startDate']?.touched" class="error-message">
             Seleccione una fecha válida.

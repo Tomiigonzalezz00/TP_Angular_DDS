@@ -1,4 +1,4 @@
-
+<div class="post-container">
   <h1>Listado de Temas</h1>
   <div class="row">
     <div class="col-md-8">
@@ -22,19 +22,19 @@
       <table class="table">
         <thead>
           <tr>
+			 <th>ID</th>
             <th>Nombre</th>
-            <th>ID</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let tema of displayedTemas; let i = index">
             <td>
-              {{ tema.nombre }}
+              {{ tema.id }}
             </td>
-            <td *ngIf="tema.id">{{ tema.id }}</td>
+            <td *ngIf="tema.nombre">{{ tema.nombre }}</td>
           </tr>
         </tbody>
       </table>
       <div *ngIf="displayedTemas.length === 0">No hay temas con ese nombre.</div>
     </div>
-
+</div>

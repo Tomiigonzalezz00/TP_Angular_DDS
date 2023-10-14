@@ -1,0 +1,71 @@
+/* styles.css */
+
+body {
+  background-color: #f2f2f2; /* Fondo gris claro */
+  font-family: Arial, sans-serif;
+  color: #333; /* Texto gris oscuro */
+}
+
+.post-container {
+  background-color: #f2f2f2; /* Fondo gris claro */
+  font-family: Arial, sans-serif;
+  color: #333; /* Texto gris oscuro */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center; /* Centra el texto horizontalmente */
+  margin-top: 20px; /* Añade un espacio en la parte superior para mejorar el diseño */
+  color: #555;/* Título más oscuro */
+} 
+.row {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff; /* Fondo blanco */
+  border: 1px solid #ccc; /* Borde gris claro */
+  border-radius: 5px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff; /* Fondo blanco */
+  border: 1px solid #ccc; /* Borde gris claro */
+  border-radius: 5px;
+}
+
+table th {
+  background-color: #e0e0e0; /* Color de fondo gris claro */
+  text-align: left;
+  padding: 8px;
+}
+
+table td {
+  border: 1px solid #ccc; /* Borde gris claro */
+  padding: 8px;
+}
+
+table tr:nth-child(even) {
+  background-color: #f0f0f0; /* Color de fondo gris más claro para filas pares */
+}
+
+table tr:nth-child(odd) {
+  background-color: #fff; /* Color de fondo blanco para filas impares */
+}
+
+.alert {
+  background-color: #f44336; /* Fondo rojo oscuro */
+  color: #fff; /* Texto blanco */
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 10px;
+}

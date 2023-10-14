@@ -1,47 +1,88 @@
-body {
-  background-color: #f5f5f5;
-}
+/* styles.css */
 
-/* Barra de navegación */
-.navbar {
-  background-color: #343a40;
-  display: flex;
-  justify-content: center; /* Centrar horizontalmente los elementos */
-  align-items: center; /* Centrar verticalmente los elementos */
-}
-
-.navbar-brand {
-  color: #ffffff;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.navbar-brand:hover {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.nav-link {
-  color: #ffffff;
-  font-weight: bold;
-  margin: 0 10px; /* Espacio entre los elementos de navegación */
-}
-
-.nav-link:hover {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-/* Contenedor principal */
-.container {
-  background-color: #ffffff;
+.post-container {
+  background-color: #f2f2f2; /* Fondo gris claro */
+  font-family: Arial, sans-serif;
+  color: #333; /* Texto gris oscuro */
   padding: 20px;
   border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Enlaces de navegación */
-.nav-item {
-  margin-right: 10px;
+body {
+  background-color: #f2f2f2; /* Fondo gris claro */
+  font-family: Arial, sans-serif;
+  color: #333; /* Texto gris oscuro */
 }
+
+
+  
+h1 {
+  text-align: center; /* Centra el texto horizontalmente */
+  margin-top: 20px; /* Añade un espacio en la parte superior para mejorar el diseño */
+  color: #555;/* Título más oscuro */
+} 
+
+.row {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff; /* Fondo blanco */
+  border: 1px solid #ccc; /* Borde gris claro */
+  border-radius: 5px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+/* Eliminamos el borde del cuadro de búsqueda */
+input[type="text"] {
+  width: 100%;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+ul.list-group {
+  list-style: none;
+  padding: 0;
+  border: 1px solid #ccc; /* Borde gris claro */
+  border-radius: 5px;
+}
+
+li.list-group-item.active {
+  background-color: rgb(216, 216, 216); /* Cambia el fondo de los elementos seleccionados a gris claro (#f2f2f2) */
+  color: #333; /* Cambia el color del texto de los elementos seleccionados a gris oscuro (#333) */
+  outline: none; /* Elimina el borde azul al seleccionar */
+  border: 1px solid #ccc; /* Vuelve a aplicar el borde gris claro */
+}
+
+
+
+li.list-group-item {
+  padding: 10px;
+  border-top: 1px solid #ccc; /* Borde gris claro */
+  cursor: pointer;
+  transition: background-color 0.3s; /* Agregar una transición para suavizar el cambio de color al pasar el ratón */
+}
+
+li.list-group-item:hover {
+  background-color: rgb(216, 216, 216); /* Fondo gris más claro al pasar el ratón */
+}
+
+/* Cambiar el color de selección en la lista de cursos */
+.list-group-item.active::selection {
+  background-color: rgb(181, 181, 181); /* Cambia el color de selección a gris claro (#f2f2f2) */
+  color: #333; /* Cambia el color del texto a gris oscuro (#333) */
+}
+
+
+li.list-group-item:hover {
+  background-color: #f0f0f0; /* Fondo gris más claro al pasar el ratón */
+}
+
+.app-curso-details {
+  border: 1px solid #ccc; /* Borde gris claro */
+  border-radius: 5px;
+  padding: 10px;
+}
+
